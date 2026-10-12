@@ -12,12 +12,14 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 
 import { Student } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
+import { StudentCard } from '../../components/student-card/student-card';
 
 // A type for the sort dropdown. Only these two values are allowed.
 type SortMode = 'featured' | 'name';
 
-@Component({
+  @Component({
   selector: 'app-student-page',
+  imports: [StudentCard],
   templateUrl: './students-page.html',
   styleUrl: './students-page.css',
 })

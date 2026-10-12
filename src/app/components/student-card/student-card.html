@@ -1,0 +1,40 @@
+<a
+  class="card"
+  [routerLink]="['/students', student().id]"
+  [attr.aria-label]="'Read the story of ' + student().name"
+>
+  <img
+    class="card__photo"
+    [src]="student().photo"
+    [alt]="'Portrait of ' + student().name"
+    loading="lazy"
+    (error)="useFallback($event)"
+  >
+
+  <div class="card__body">
+    <div class="card__heading">
+      <h3 class="card__name">{{ student().name }}</h3>
+
+      <svg
+        class="card__arrow"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M7 17 17 7M8 7h9v9" />
+      </svg>
+    </div>
+
+    <p class="card__meta">
+      {{ student().faculty }} · Class of {{ student().classYear }}
+    </p>
+
+    <p class="card__quote">
+      “{{ student().quote }}”
+    </p>
+  </div>
+</a>
