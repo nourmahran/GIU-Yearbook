@@ -1,3 +1,8 @@
+/*
+ * FILE: student-card.css
+ * WHAT: Styles the student card layout, photo, text, arrow, and hover effect.
+ * WHY: Keeps the reusable student card consistent with the yearbook design system.
+ */
 .card {
   display: flex;
   flex-direction: column;
