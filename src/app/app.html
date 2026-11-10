@@ -1,13 +1,7 @@
-<!--
-  FILE: src/app/app.html
-  STEP 1: The site header (tricolor band, logo, navigation, login button).
-  STEP 2: The thin strip under the header (tagline and small links).
-  STEP 3: <router-outlet> is a "hole". The router puts the current page
-          (directory, gallery, ...) here. The header never reloads.
--->
 <app-header />
-<app-top-strip />
-
 <main>
   <router-outlet />
 </main>
+<footer>
+  <app-top-strip />
+</footer>

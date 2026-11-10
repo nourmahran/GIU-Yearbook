@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "Dr. Leila Mansour",
+        "department": "Engineering",
+        "role": "Associate professor",
+        "bio": "A mentor in robotics and a champion of learning by making. Always the first to ask: \"What else could it do?\"",
+        "quote": "Let curiosity lead the way.",
+        "photo": "images/staff/leila-mansour.jpg",
+        "featured": true
+    },
+    {
+        "id": 2,
+        "name": "Prof. Felix Braun",
+        "department": "Informatics",
+        "role": "Professor",
+        "bio": "From the first line of code to the final capstone, he helped us find clarity in the most complex problems.",
+        "quote": "Keep asking better questions.",
+        "photo": "images/staff/felix-braun.jpg",
+        "featured": true
+    },
+    {
+        "id": 3,
+        "name": "Dr. Salma Nabil",
+        "department": "Business",
+        "role": "Assistant professor",
+        "bio": "Brought the world beyond the classroom into every conversation, with a belief in thoughtful leadership.",
+        "quote": "Success means lifting others, too.",
+        "photo": "images/staff/salma-nabil.jpg",
+        "featured": true
+    },
+    {
+        "id": 4,
+        "name": "Prof. Daniel Hoffmann",
+        "department": "Design",
+        "role": "Professor",
+        "bio": "Turned critique into possibility and encouraged every student to develop a point of view of their own.",
+        "quote": "Find your voice. Then use it.",
+        "photo": "images/staff/daniel-hoffmann.jpg",
+        "featured": false
+    },
+    {
+        "id": 5,
+        "name": "Rania Mostafa",
+        "department": "Student services",
+        "role": "Student affairs coordinator",
+        "bio": "A familiar face through every milestone, helping students feel supported, connected, and at home.",
+        "quote": "There's always a way forward.",
+        "photo": "images/staff/rania-mostafa.jpg",
+        "featured": false
+    },
+    {
+        "id": 6,
+        "name": "Ahmed Farouk",
+        "department": "Engineering",
+        "role": "Laboratory supervisor",
+        "bio": "Our steady hand in the lab, turning ambitious ideas into working prototypes one patient lesson at a time.",
+        "quote": "Great things are built together.",
+        "photo": "images/staff/ahmed-farouk.jpg",
+        "featured": false
+    }
+]

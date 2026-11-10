@@ -1,0 +1,159 @@
+/* FILE: pages/login-page/login-page.css
+   Numbers come from the Figma frame "Student login". */
+
+.login {
+  display: flex;
+  align-items: center;
+  gap: 88px;
+  padding-top: var(--space-8);
+}
+
+/* STEP 1: Photo card, 624 x 672. `position: relative` lets the photo and
+   the dark overlay sit BEHIND the text (position: absolute). */
+.invitation {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 624px;
+  height: 672px;
+  padding: var(--space-7) 40px 40px;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--color-photo-background); /* shown if the photo file is missing */
+}
+.invitation__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+.invitation__overlay {
+  position: absolute;
+  inset: 0;
+  /* clear at the top, almost black at the bottom: keeps the text readable */
+  background: linear-gradient(to bottom, transparent 25%, var(--color-photo-overlay));
+}
+.invitation__text {
+  position: relative; /* paint above the overlay */
+  display: grid;
+  gap: 18px;
+}
+.invitation__overline { font-size: 11px; font-weight: 600; color: var(--color-gold); }
+.invitation__title { font: 400 44px/1.12 var(--font-serif); color: var(--color-white); }
+.invitation__desc { font-size: 14px; line-height: 1.6; color: var(--color-photo-caption); }
+.invitation__edition { font-size: 11px; color: var(--color-photo-caption); }
+
+/* STEP 2: The form column, 500px wide. */
+.form {
+  display: grid;
+  flex: none;
+  gap: 26px;
+  width: 500px;
+}
+.form__intro { display: grid; gap: 14px; }
+.overline { font-size: 11px; font-weight: 600; color: var(--color-red); }
+.form__title { font: 400 44px/1.2 var(--font-serif); }
+.form__desc { font-size: 14px; line-height: 1.6; color: var(--color-muted); }
+
+/* STEP 3: A field = label + box (+ error). */
+.field { display: grid; gap: 9px; }
+.field__label { font-size: 13px; font-weight: 600; }
+.field__box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 48px;
+  padding: 0 15px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+.field__box:focus-within { border-color: var(--color-ink); }
+.field__box--invalid { border-color: var(--color-red); }
+.field__box input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 0;
+  border: 0;
+  background: transparent;
+  font: 400 13px/1.65 var(--font-sans);
+  color: var(--color-ink);
+}
+.field__box input::placeholder { color: var(--color-muted); }
+/* The box already shows the focus state (border), so the input itself needs no ring. */
+.field__box input:focus-visible { outline: none; }
+.field__toggle {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+.field__toggle img,
+.field__toggle svg { width: 18px; height: 18px; }
+.field__error { font-size: 12px; color: var(--color-red); }
+
+/* STEP 4: "Keep me signed in". The real checkbox is hidden but still works
+   with the keyboard; the .check__box next to it is what you SEE. */
+.prefs { display: flex; align-items: center; justify-content: space-between; }
+.check { position: relative; display: flex; align-items: center; gap: 9px; cursor: pointer; }
+.check input { position: absolute; opacity: 0; width: 16px; height: 16px; margin: 0; }
+.check__box {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+}
+.check input:checked + .check__box { background: var(--color-red); border-color: var(--color-red); }
+.check input:checked + .check__box::after {
+  content: '';
+  width: 8px;
+  height: 4px;
+  margin-top: -2px;
+  border-left: 2px solid var(--color-white);
+  border-bottom: 2px solid var(--color-white);
+  transform: rotate(-45deg);
+}
+.check input:focus-visible + .check__box { outline: 2px solid var(--color-red); outline-offset: 3px; }
+.check__label { font-size: 12px; color: var(--color-muted); }
+.prefs__link { padding: 0; border: 0; background: none; font: 400 12px var(--font-sans); color: var(--color-red); cursor: pointer; }
+
+.form__error {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--color-gold-tint);
+  font-size: 13px;
+  color: var(--color-ink);
+}
+
+/* STEP 5: The primary button. `.btn` comes from styles.css; we only add the red. */
+.btn--primary {
+  gap: 10px;
+  width: 100%;
+  background: var(--color-red);
+  border-color: var(--color-red);
+  color: var(--color-white);
+}
+.btn--primary:hover:not(:disabled) { background: var(--color-red-hover); border-color: var(--color-red-hover); }
+.btn--primary:disabled { opacity: 0.7; cursor: progress; }
+
+.help { display: grid; gap: 12px; padding-top: 20px; border-top: 1px solid var(--color-border); font-size: 12px; color: var(--color-muted); }
+.help__privacy { display: flex; align-items: center; gap: 10px; }
+.help__privacy img { width: 18px; height: 18px; }
+.help__text { line-height: 1.6; }
+.help__link { font-weight: 600; color: var(--color-red); }
+
+/* Below 1100px there is no room for two columns: hide the photo. */
+@media (max-width: 1100px) {
+  .invitation { display: none; }
+  .form { width: 100%; max-width: 500px; }
+}

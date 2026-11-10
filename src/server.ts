@@ -1,3 +1,4 @@
+
 import {
   AngularNodeAppEngine,
   createNodeRequestHandler,
@@ -6,11 +7,14 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { registerMockAuth } from './mock-api/mock-auth';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
+// Register mock authentication endpoints
+registerMockAuth(app);
 
 /**
  * Example Express Rest API endpoints can be defined here.

@@ -1,0 +1,355 @@
+
+<!-- FILE: src/app/pages/profile-page/profile-page.html -->
+
+<!-- Page introduction -->
+<section class="intro">
+  <div class="intro__text">
+    <p class="overline">YOUR YEARBOOK / MY PROFILE</p>
+    <h1 class="intro__title">Make this page yours.</h1>
+    <p class="intro__desc">
+      A photo, a few words, a little of who you are.
+      This is how your classmates will remember you.
+    </p>
+  </div>
+
+  <p class="intro__signed">
+    SIGNED IN AS<br />
+    {{ user()?.name }}
+  </p>
+</section>
+
+@if (student(); as s) {
+  <div class="columns">
+
+    <!-- Profile editor -->
+    <form
+      class="card"
+      [formGroup]="form"
+      (ngSubmit)="saveDraft()"
+      novalidate
+    >
+
+      <!-- Student identity -->
+      <div class="identity">
+        <div>
+          <p class="identity__name">{{ s.name }}</p>
+          <p class="identity__meta">
+            {{ s.faculty }} · Class of {{ s.classYear }}
+          </p>
+        </div>
+
+        @if (published()) {
+          <span class="tag">Published</span>
+        } @else {
+          <span class="tag tag--draft">
+            Draft · Not published
+          </span>
+        }
+      </div>
+
+      <!-- Profile photo -->
+      <div class="group">
+        <p class="label">Your yearbook photo</p>
+
+        <div class="photo">
+          <img
+            class="photo__current"
+            [src]="s.photo"
+            [alt]="'Current portrait of ' + s.name"
+          />
+
+          <label class="photo__drop">
+            <input
+              type="file"
+              accept="image/png, image/jpeg"
+              class="visually-hidden"
+            />
+
+            <img
+              src="icons/upload.svg"
+              alt=""
+              aria-hidden="true"
+            />
+
+            <span class="photo__prompt">
+              Choose a photo or drag it here
+            </span>
+
+            <span class="photo__hint">
+              JPG or PNG · Up to 5 MB · Portrait recommended
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Yearbook quote -->
+      <div class="group">
+        <label class="label" for="quote">
+          Your yearbook quote *
+        </label>
+
+        <input
+          type="text"
+          id="quote"
+          class="control"
+          formControlName="quote"
+          maxlength="160"
+          placeholder="Write something your classmates will remember..."
+        />
+
+        <div class="field-meta">
+          @if (
+            form.controls.quote.touched &&
+            form.controls.quote.invalid
+          ) {
+            <span class="field-error">
+              @if (form.controls.quote.hasError('required')) {
+                A yearbook quote is required.
+              } @else if (
+                form.controls.quote.hasError('maxlength')
+              ) {
+                Your quote must be 160 characters or fewer.
+              }
+            </span>
+          }
+
+          <span>
+            {{ (formValue().quote ?? "").length }} / 160
+          </span>
+        </div>
+      </div>
+
+      <!-- Student story -->
+      <div class="group">
+        <label class="label" for="story">
+          Your story
+        </label>
+
+        <textarea
+          id="story"
+          class="control control--story"
+          formControlName="story"
+          maxlength="1000"
+          placeholder="Tell your classmates about your journey, favorite memories, and experiences..."
+        ></textarea>
+
+        <div class="field-meta">
+          @if (
+            form.controls.story.touched &&
+            form.controls.story.invalid
+          ) {
+            <span class="field-error">
+              Your story must be 1000 characters or fewer.
+            </span>
+          }
+
+          <span>
+            {{ (formValue().story ?? "").length }} / 1000
+          </span>
+        </div>
+      </div>
+
+      <!-- Moment and future plans -->
+      <div class="pair">
+        <div class="group">
+          <label class="label" for="moment">
+            A moment to keep
+          </label>
+
+          <textarea
+            id="moment"
+            class="control control--small"
+            formControlName="moment"
+            maxlength="200"
+          ></textarea>
+        </div>
+
+        <div class="group">
+          <label class="label" for="next">
+            What's next?
+          </label>
+
+          <textarea
+            id="next"
+            class="control control--small"
+            formControlName="next"
+            maxlength="120"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Consent checkbox -->
+      <div class="group">
+        <label class="check">
+          <input
+            type="checkbox"
+            formControlName="consent"
+          />
+
+          <span
+            class="check__box"
+            aria-hidden="true"
+          ></span>
+
+          <span class="check__label">
+            I agree to share my yearbook story and profile
+            with my classmates.
+          </span>
+        </label>
+
+        @if (
+          form.controls.consent.touched &&
+          !form.controls.consent.value
+        ) {
+          <p class="field-error">
+            Consent is required before publishing.
+          </p>
+        }
+      </div>
+
+      <!-- Save and publish controls -->
+      <div class="save-row">
+        <div class="save-row__status" role="status">
+          @if (storageError()) {
+            <span>
+              Something went wrong. Please try again.
+            </span>
+          } @else if (published()) {
+            <span>
+              Profile published locally.
+            </span>
+          } @else if (saved()) {
+            <span>
+              Draft saved at {{ savedAt() | date: 'HH:mm' }}
+            </span>
+          } @else if (changed()) {
+            <span>
+              You have unsaved changes.
+            </span>
+          } @else {
+            <span>
+              Your profile is ready to edit.
+            </span>
+          }
+        </div>
+
+        <div class="save-row__actions">
+          <button
+            type="button"
+            class="btn"
+            (click)="clearDraft()"
+          >
+            Clear draft
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="saveDraft()"
+          >
+            Save draft
+          </button>
+
+          <button
+            type="button"
+            class="btn btn--primary"
+            (click)="publishProfile()"
+          >
+            Publish profile
+          </button>
+        </div>
+      </div>
+
+      <!-- Publishing messages -->
+      @if (publishError()) {
+        <p class="field-error" role="alert">
+          {{ publishError() }}
+        </p>
+      }
+
+      @if (published()) {
+        <p class="status" role="status">
+          Your profile has been published locally!
+        </p>
+      }
+
+    </form>
+
+    <!-- Live directory card preview -->
+    <aside class="preview">
+      <div class="preview__heading">
+        <p class="preview__title">
+          Your directory card
+        </p>
+
+        <span class="tag">PREVIEW</span>
+      </div>
+
+      <article class="mini">
+        <img
+          class="mini__photo"
+          [src]="s.photo"
+          [alt]="'Portrait of ' + s.name"
+        />
+
+        <div class="mini__body">
+          <p class="mini__name">
+            {{ s.name }}
+
+            <img
+              src="icons/arrow-up-right.svg"
+              alt=""
+              aria-hidden="true"
+            />
+          </p>
+
+          <p class="mini__meta">
+            {{ s.faculty }} · Class of {{ s.classYear }}
+          </p>
+
+          <p class="mini__quote">
+            “{{ previewQuote() }}”
+          </p>
+        </div>
+      </article>
+
+      <p class="preview__note">
+        Your full story opens when a classmate selects your card.
+        Publishing is simulated on this browser; it does not update the shared directory.
+      </p>
+
+      <!-- Profile guidance -->
+      <div class="guidance">
+        <img
+          src="icons/sparkles.svg"
+          alt=""
+          aria-hidden="true"
+        />
+
+        <p class="guidance__title">
+          Keep it authentically you.
+        </p>
+
+        <p>
+          Choose a clear, recent photo.
+          Share a memory that makes you smile.
+          Give a little glimpse of what's next.
+        </p>
+      </div>
+
+      <!-- Sign out -->
+      <button
+        type="button"
+        class="signout"
+        (click)="signOut()"
+      >
+        Sign out of your account ↗
+      </button>
+    </aside>
+  </div>
+
+} @else {
+  <p class="status" role="status">
+    Loading your profile…
+  </p>
+}

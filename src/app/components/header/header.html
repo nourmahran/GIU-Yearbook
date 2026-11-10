@@ -40,9 +40,18 @@
     </nav>
 
     <!-- STEP 4: The login button uses the shared .btn styles from styles.css. -->
-    <a class="btn header__login" routerLink="/login">
-      Student login
-      <img src="icons/arrow-up-right.svg" alt="" aria-hidden="true" />
-    </a>
+
+@if (auth.isLoggedIn()) {
+  <a class="btn header__login" routerLink="/profile">
+    My Profile
+    <img src="icons/arrow-up-right.svg" alt="" aria-hidden="true" />
+  </a>
+} @else {
+  <a class="btn header__login" routerLink="/login">
+    Student login
+    <img src="icons/arrow-up-right.svg" alt="" aria-hidden="true" />
+  </a>
+}
+
   </div>
 </header>

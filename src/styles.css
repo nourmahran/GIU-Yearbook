@@ -15,6 +15,10 @@
         the red tomorrow, you edit one line, not fifty.
    --------------------------------------------------------------------- */
 :root {
+  --color-gold-text: #7d5b19;
+  --color-photo-background: #171717;
+  --color-photo-caption: #e1e1da;
+  --color-photo-overlay: rgba(23, 23, 23, 0.91);
   /* Colors (UI kit > Brand & color) */
   --color-ink: #202020;          /* primary text */
   --color-red: #B52430;          /* actions & active states */

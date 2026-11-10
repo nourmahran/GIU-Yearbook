@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Maya Hassan",
+    "faculty": "Engineering",
+    "classYear": 2028,
+    "quote": "Build things that make a difference.",
+    "photo": "images/students/maya-hassan.jpg",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Adam Schneider",
+    "faculty": "Informatics",
+    "classYear": 2028,
+    "quote": "The best code starts with a little curiosity.",
+    "photo": "images/students/adam-schneider.jpg",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "name": "Farah Adel",
+    "faculty": "Design",
+    "classYear": 2028,
+    "quote": "Make room for ideas that don't fit the brief.",
+    "photo": "images/students/farah-adel.jpg",
+    "featured": true
+  },
+  {
+    "id": 4,
+    "name": "Omar Khalil",
+    "faculty": "Business",
+    "classYear": 2028,
+    "quote": "Good company makes every journey better.",
+    "photo": "images/students/omar-khalil.jpg",
+    "featured": true
+  },
+  {
+    "id": 5,
+    "name": "Lina Weber",
+    "faculty": "Engineering",
+    "classYear": 2028,
+    "quote": "Small steps. Bold possibilities.",
+    "photo": "images/students/lina-weber.jpg",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "name": "Karim Youssef",
+    "faculty": "Informatics",
+    "classYear": 2028,
+    "quote": "Stay curious. Keep building.",
+    "photo": "images/students/karim-youssef.jpg",
+    "featured": false
+  },
+  {
+    "id": 7,
+    "name": "Nour Ibrahim",
+    "faculty": "Business",
+    "classYear": 2028,
+    "quote": "Collect moments, not just milestones.",
+    "photo": "images/students/nour-ibrahim.jpg",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "name": "Youssef Samir",
+    "faculty": "Design",
+    "classYear": 2028,
+    "quote": "This is only the first draft.",
+    "photo": "images/students/youssef-samir.jpg",
+    "featured": false
+  }
+]
